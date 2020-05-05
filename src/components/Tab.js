@@ -17,12 +17,17 @@ class Tab extends React.Component {
       (item) => item.id === parseInt(e.target.name)
     );
     productsLocal[line].quantity = parseInt(e.target.value);
+    if (productsLocal[line].quantity === 0) {
+        window.confirm('Etes-vous sûr.e de bien vouloir retirer ce produit de la liste ?')
+    }
     this.setState({ products: productsLocal });
   };
 
   render() {
+
       const unitTotal = this.state.products.map(product => product.price * product.quantity)
       const reducer = (accumulator, currentValue) => accumulator + currentValue
+
     return (
       <div>
         <table>
