@@ -12,13 +12,13 @@ class Form extends React.Component {
         <h2>Ajouter un produit</h2>
         <div className="input-container">
           <label htmlFor="name">Nom : </label>
-          <input id="name" value="" type="text" />
+          <input id="name" type="text" />
         </div>
         <div className="input-container">
           <label htmlFor="price">Prix : </label>
-          <input id="price" value="" type="number" />
+          <input id="price" type="number" />
         </div>
-        <input id='submit' type="submit" value="Ajouter" />
+        <input id='submit' type="submit" value="Ajouter" onClick={this.props.newProduct} />
       </form>
     );
   }

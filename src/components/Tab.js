@@ -1,5 +1,9 @@
 import React from "react";
 
+import Form from './Form'
+
+import './Form.css'
+
 const initialProductList = [
   { id: 1, name: "produit 1", price: 50, quantity: 1 },
   { id: 2, name: "produit 2", price: 75, quantity: 2 },
@@ -10,6 +14,12 @@ class Tab extends React.Component {
   state = {
     products: initialProductList,
   };
+
+  newProduct = () => {
+      const name = document.getElementById('name')
+      const price = document.getElementById('price')
+      console.log(name.value, price.value)
+  }
 
   quantityInput = (e) => {
     const productsLocal = this.state.products;
@@ -64,6 +74,7 @@ class Tab extends React.Component {
             {unitTotal.reduce(reducer)} €
           </span>
         </p>
+        <Form newProduct={this.newProduct} />
       </div>
     );
   }
