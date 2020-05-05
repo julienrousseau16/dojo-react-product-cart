@@ -21,6 +21,8 @@ class Tab extends React.Component {
   };
 
   render() {
+      const unitTotal = this.state.products.map(product => product.price * product.quantity)
+      const reducer = (accumulator, currentValue) => accumulator + currentValue
     return (
       <div>
         <table>
@@ -48,7 +50,7 @@ class Tab extends React.Component {
             );
           })}
         </table>
-        <p>Montant de la commande: {}</p>
+        <p>Montant de la commande : <span style={{fontWeight: 'bold'}}>{unitTotal.reduce(reducer)} €</span></p>
       </div>
     );
   }
