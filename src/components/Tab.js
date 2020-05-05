@@ -7,28 +7,49 @@ const initialProductList = [
 ];
 
 class Tab extends React.Component {
-  state = {};
+  state = {
+    products: initialProductList,
+  };
+
+  quantityInput = (e) => {
+    const productsLocal = this.state.products;
+    const line = productsLocal.findIndex(
+      (item) => item.id === parseInt(e.target.name)
+    );
+    productsLocal[line].quantity = parseInt(e.target.value);
+    this.setState({ products: productsLocal });
+  };
 
   render() {
     return (
-      <table>
-        <thead>
-          <td>Produit</td>
-          <td>Prix Unitaire</td>
-          <td>Quantité</td>
-          <td>Prix total</td>
-        </thead>
-        {initialProductList.map((produit) => {
-          return (
-            <tbody>
-              <td>{produit.name}</td>
-              <td>{produit.price} €</td>
-              <td>{produit.quantity}</td>
-              <td>{produit.price * produit.quantity}</td>
-            </tbody>
-          );
-        })}
-      </table>
+      <div>
+        <table>
+          <thead>
+            <td>Produit</td>
+            <td>Prix Unitaire</td>
+            <td>Quantité</td>
+            <td>Prix total</td>
+          </thead>
+          {this.state.products.map((product) => {
+            return (
+              <tbody key={product.id}>
+                <td>{product.name}</td>
+                <td>{product.price} €</td>
+                <td>
+                  <input
+                    type="number"
+                    name={product.id}
+                    value={product.quantity}
+                    onChange={this.quantityInput}
+                  />
+                </td>
+                <td>{product.price * product.quantity} €</td>
+              </tbody>
+            );
+          })}
+        </table>
+        <p>Montant de la commande: {}</p>
+      </div>
     );
   }
 }
